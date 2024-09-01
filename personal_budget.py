@@ -9,7 +9,12 @@ class BudgetCategory:
         return self.__category
     
     def set_category(self, new_category):
-        self.__category = new_category
+        match = re.search("[A-Za-z][A-Za-z]?", new_category)
+        if match:
+            self.__category = new_category
+            print(f"Category changed: {new_category}")
+        else:
+            print("Category name must only contain letters and spaces.")
 
     def get_budget(self):
         return self.__allocated_budget
@@ -34,4 +39,5 @@ class BudgetCategory:
 food_category = BudgetCategory("Food", 500)
 food_category.add_expenses(100)
 food_category.display_category_summary()
+
 
